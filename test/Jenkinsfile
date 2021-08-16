@@ -6,6 +6,7 @@ pipeline{
   stages{
     stage('tf init'){
       steps{
+        sh 'echo ${PATH}'
         sh "terraform init"
       }
     }
