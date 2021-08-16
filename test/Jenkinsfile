@@ -1,8 +1,8 @@
 pipeline{
   agent any
-environment {
-  PATH = "${PATH}:{gettfPath()}"
-}
+  environment {
+    PATH = "${PATH}:{gettfPath()}"
+  }
   stages{
     stage('tf init'){
       steps{
