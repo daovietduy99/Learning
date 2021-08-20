@@ -11,8 +11,8 @@ variable "region" {
 
 variable "ami" {
   description = "Choose ami for your instance"
-  type = string
-  default = "ami-0f511ead81ccde020"
+  type        = string
+  default     = "ami-0f511ead81ccde020"
 }
 
 variable "web_ec2_count" {
