@@ -1,4 +1,4 @@
-locals{
+locals {
   mybucket = "my-bucket-fghfh5678gh"
 }
 

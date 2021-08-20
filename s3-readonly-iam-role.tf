@@ -1,5 +1,5 @@
 data "template_file" "s3readonly_policy" {
-  template = "${file("scripts/iam/s3-readonly.json")}"
+  template = file("scripts/iam/s3-readonly.json")
 }
 
 resource "aws_iam_role_policy" "s3readonly_policy" {

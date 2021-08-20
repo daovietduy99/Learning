@@ -1,5 +1,5 @@
 data "template_file" "s3_policy" {
-  template = "${file("scripts/iam/web-ec2-policy.json")}"
+  template = file("scripts/iam/web-ec2-policy.json")
   vars = {
     s3_bucket_arn = "${aws_s3_bucket.my_bucket.arn}"
   }

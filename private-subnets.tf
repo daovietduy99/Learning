@@ -9,11 +9,11 @@ resource "aws_subnet" "private_subnets" {
   }
 }
 resource "aws_instance" "nat_instance" {
-  ami           = var.ami
-  instance_type = "t2.micro"
-  subnet_id = local.pub_sub_ids[0]
+  ami               = var.ami
+  instance_type     = "t2.micro"
+  subnet_id         = local.pub_sub_ids[0]
   source_dest_check = false
-  security_groups = [aws_security_group.nat_sg.id]
+  security_groups   = [aws_security_group.nat_sg.id]
 
   tags = {
     Name = "${terraform.workspace}-nat"
@@ -24,7 +24,7 @@ resource "aws_route_table" "pri_rt" {
   vpc_id = aws_vpc.my_vpc.id
 
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block  = "0.0.0.0/0"
     instance_id = aws_instance.nat_instance.id
   }
 
@@ -34,7 +34,7 @@ resource "aws_route_table" "pri_rt" {
 }
 
 resource "aws_route_table_association" "pri-sub-association" {
-  count = length(slice(local.az_names, 0, 2))
+  count          = length(slice(local.az_names, 0, 2))
   subnet_id      = aws_subnet.private_subnets.*.id[count.index]
   route_table_id = aws_route_table.pri_rt.id
 }
@@ -45,10 +45,10 @@ resource "aws_security_group" "nat_sg" {
   vpc_id      = aws_vpc.my_vpc.id
 
   egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
 
